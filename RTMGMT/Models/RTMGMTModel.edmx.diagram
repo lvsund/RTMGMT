@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ece65b95319d4e0d8abc13fc9aa9be74" Name="Diagram1">
+        <EntityTypeShape EntityType="RTMGMTModel.BottomUpProcessedRecord" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RTMGMTModel.BrokenRecord" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RTMGMTModel.DuplicateRTRecord" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RTMGMTModel.FixRecord" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RTMGMTModel.ReportsToRecord" Width="1.875" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RTMGMTModel.ReportsToRecordStaging" Width="1.875" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RTMGMTModel.RequiredCorrectionsSet" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RTMGMTModel.TopDownProcessedRecord" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

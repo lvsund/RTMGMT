@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RTMGMTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BottomUpProcessedRecords">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RT_STRING" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BrokenRecords">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="REPORTING_ID" Type="nvarchar" MaxLength="20" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="50" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="REPORTS_TO_ID" Type="nvarchar" MaxLength="20" />
+          <Property Name="RT_STRING" Type="nvarchar" MaxLength="255" />
+          <Property Name="EMPLOYEE_ID" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="DuplicateRTRecords">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="REPORTING_ID" Type="nvarchar" MaxLength="20" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="50" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="REPORTS_TO_ID" Type="nvarchar" MaxLength="20" />
+          <Property Name="EMPLOYEE_ID" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="FixRecords">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="REPORTING_ID" Type="nvarchar" MaxLength="20" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="50" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="REPORTS_TO_ID" Type="nvarchar" MaxLength="20" />
+          <Property Name="RT_STRING" Type="nvarchar" MaxLength="255" />
+          <Property Name="EMPLOYEE_ID" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="ReportsToRecords">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="REPORTING_ID" Type="nvarchar" MaxLength="20" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="50" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="REPORTS_TO_ID" Type="nvarchar" MaxLength="20" />
+          <Property Name="EMPLOYEE_ID" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="ReportsToRecordStagings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="REPORTING_ID" Type="nvarchar" MaxLength="20" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="50" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="REPORTS_TO_ID" Type="nvarchar" MaxLength="20" />
+          <Property Name="EMPLOYEE_ID" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="RequiredCorrectionsSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="REPORTING_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="REPORTS_TO_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TopDownProcessedRecords">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="REPORTING_ID" Type="nvarchar" MaxLength="20" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="50" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="REPORT_LEVEL" Type="int" />
+          <Property Name="REPORTS_TO_ID" Type="nvarchar" MaxLength="20" />
+          <Property Name="RT_STRING" Type="nvarchar" MaxLength="255" />
+          <Property Name="EMPLOYEE_ID" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <Function Name="Bottom_Up_Recurse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="DeleteAllRecords" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="DeleteCorrections" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="DeleteTheDuplicateRecords" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GenerateRecordFixList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GenerateReportingStructure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetBrokenRecords" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetTheDuplicateRecords" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ImportReportsToRecords" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ProcessReportsToRecords" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="TruncateProcessedRecordsExceptCorrections" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DepartmentID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateReportsToWithCorrections" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="RTMGMTModelStoreContainer">
+          <EntitySet Name="BottomUpProcessedRecords" EntityType="Self.BottomUpProcessedRecords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BrokenRecords" EntityType="Self.BrokenRecords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DuplicateRTRecords" EntityType="Self.DuplicateRTRecords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FixRecords" EntityType="Self.FixRecords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportsToRecords" EntityType="Self.ReportsToRecords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportsToRecordStagings" EntityType="Self.ReportsToRecordStagings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequiredCorrectionsSet" EntityType="Self.RequiredCorrectionsSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TopDownProcessedRecords" EntityType="Self.TopDownProcessedRecords" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RTMGMTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BottomUpProcessedRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RT_STRING" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BrokenRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="REPORTING_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TITLE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="REPORTS_TO_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RT_STRING" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EMPLOYEE_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DuplicateRTRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="REPORTING_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TITLE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="REPORTS_TO_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EMPLOYEE_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="FixRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="REPORTING_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TITLE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="REPORTS_TO_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RT_STRING" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EMPLOYEE_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ReportsToRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="REPORTING_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TITLE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="REPORTS_TO_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EMPLOYEE_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ReportsToRecordStaging">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="REPORTING_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TITLE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="REPORTS_TO_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EMPLOYEE_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RequiredCorrectionsSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="REPORTING_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="REPORTS_TO_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TopDownProcessedRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="REPORTING_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TITLE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="REPORT_LEVEL" Type="Int32" />
+          <Property Name="REPORTS_TO_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RT_STRING" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EMPLOYEE_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="RTMGMTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BottomUpProcessedRecords" EntityType="Self.BottomUpProcessedRecord" />
+          <EntitySet Name="BrokenRecords" EntityType="Self.BrokenRecord" />
+          <EntitySet Name="DuplicateRTRecords" EntityType="Self.DuplicateRTRecord" />
+          <EntitySet Name="FixRecords" EntityType="Self.FixRecord" />
+          <EntitySet Name="ReportsToRecords" EntityType="Self.ReportsToRecord" />
+          <EntitySet Name="ReportsToRecordStagings" EntityType="Self.ReportsToRecordStaging" />
+          <EntitySet Name="RequiredCorrectionsSets" EntityType="Self.RequiredCorrectionsSet" />
+          <EntitySet Name="TopDownProcessedRecords" EntityType="Self.TopDownProcessedRecord" />
+          <FunctionImport Name="Bottom_Up_Recurse" />
+          <FunctionImport Name="DeleteAllRecords">
+          </FunctionImport>
+          <FunctionImport Name="DeleteCorrections">
+          </FunctionImport>
+          <FunctionImport Name="DeleteTheDuplicateRecords" />
+          <FunctionImport Name="GenerateRecordFixList" />
+          <FunctionImport Name="GenerateReportingStructure" />
+          <FunctionImport Name="GetBrokenRecords" />
+          <FunctionImport Name="GetTheDuplicateRecords" />
+          <FunctionImport Name="ImportReportsToRecords">
+          </FunctionImport>
+          <FunctionImport Name="ProcessReportsToRecords">
+          </FunctionImport>
+          <FunctionImport Name="TruncateProcessedRecordsExceptCorrections">
+          <Parameter Name="DepartmentID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateReportsToWithCorrections">
+          </FunctionImport>
+          <FunctionImport Name="ImportsReportsToRecords">
+          </FunctionImport>
+          <FunctionImport Name="DeleteAllRecordsFunction">
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RTMGMTModelStoreContainer" CdmEntityContainer="RTMGMTEntities">
+          <EntitySetMapping Name="BottomUpProcessedRecords">
+            <EntityTypeMapping TypeName="RTMGMTModel.BottomUpProcessedRecord">
+              <MappingFragment StoreEntitySet="BottomUpProcessedRecords">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RT_STRING" ColumnName="RT_STRING" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BrokenRecords">
+            <EntityTypeMapping TypeName="RTMGMTModel.BrokenRecord">
+              <MappingFragment StoreEntitySet="BrokenRecords">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="REPORTING_ID" ColumnName="REPORTING_ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="REPORTS_TO_ID" ColumnName="REPORTS_TO_ID" />
+                <ScalarProperty Name="RT_STRING" ColumnName="RT_STRING" />
+                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DuplicateRTRecords">
+            <EntityTypeMapping TypeName="RTMGMTModel.DuplicateRTRecord">
+              <MappingFragment StoreEntitySet="DuplicateRTRecords">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="REPORTING_ID" ColumnName="REPORTING_ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="REPORTS_TO_ID" ColumnName="REPORTS_TO_ID" />
+                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FixRecords">
+            <EntityTypeMapping TypeName="RTMGMTModel.FixRecord">
+              <MappingFragment StoreEntitySet="FixRecords">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="REPORTING_ID" ColumnName="REPORTING_ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="REPORTS_TO_ID" ColumnName="REPORTS_TO_ID" />
+                <ScalarProperty Name="RT_STRING" ColumnName="RT_STRING" />
+                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportsToRecords">
+            <EntityTypeMapping TypeName="RTMGMTModel.ReportsToRecord">
+              <MappingFragment StoreEntitySet="ReportsToRecords">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="REPORTING_ID" ColumnName="REPORTING_ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="REPORTS_TO_ID" ColumnName="REPORTS_TO_ID" />
+                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportsToRecordStagings">
+            <EntityTypeMapping TypeName="RTMGMTModel.ReportsToRecordStaging">
+              <MappingFragment StoreEntitySet="ReportsToRecordStagings">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="REPORTING_ID" ColumnName="REPORTING_ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="REPORTS_TO_ID" ColumnName="REPORTS_TO_ID" />
+                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequiredCorrectionsSets">
+            <EntityTypeMapping TypeName="RTMGMTModel.RequiredCorrectionsSet">
+              <MappingFragment StoreEntitySet="RequiredCorrectionsSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="REPORTING_ID" ColumnName="REPORTING_ID" />
+                <ScalarProperty Name="REPORTS_TO_ID" ColumnName="REPORTS_TO_ID" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TopDownProcessedRecords">
+            <EntityTypeMapping TypeName="RTMGMTModel.TopDownProcessedRecord">
+              <MappingFragment StoreEntitySet="TopDownProcessedRecords">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="REPORTING_ID" ColumnName="REPORTING_ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="REPORT_LEVEL" ColumnName="REPORT_LEVEL" />
+                <ScalarProperty Name="REPORTS_TO_ID" ColumnName="REPORTS_TO_ID" />
+                <ScalarProperty Name="RT_STRING" ColumnName="RT_STRING" />
+                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Bottom_Up_Recurse" FunctionName="RTMGMTModel.Store.Bottom_Up_Recurse" />
+          <FunctionImportMapping FunctionImportName="DeleteAllRecords" FunctionName="RTMGMTModel.Store.DeleteAllRecords" />
+          <FunctionImportMapping FunctionImportName="DeleteCorrections" FunctionName="RTMGMTModel.Store.DeleteCorrections" />
+          <FunctionImportMapping FunctionImportName="DeleteTheDuplicateRecords" FunctionName="RTMGMTModel.Store.DeleteTheDuplicateRecords" />
+          <FunctionImportMapping FunctionImportName="GenerateRecordFixList" FunctionName="RTMGMTModel.Store.GenerateRecordFixList" />
+          <FunctionImportMapping FunctionImportName="GenerateReportingStructure" FunctionName="RTMGMTModel.Store.GenerateReportingStructure" />
+          <FunctionImportMapping FunctionImportName="GetBrokenRecords" FunctionName="RTMGMTModel.Store.GetBrokenRecords" />
+          <FunctionImportMapping FunctionImportName="GetTheDuplicateRecords" FunctionName="RTMGMTModel.Store.GetTheDuplicateRecords" />
+          <FunctionImportMapping FunctionImportName="ImportReportsToRecords" FunctionName="RTMGMTModel.Store.ImportReportsToRecords" />
+          <FunctionImportMapping FunctionImportName="ProcessReportsToRecords" FunctionName="RTMGMTModel.Store.ProcessReportsToRecords" />
+          <FunctionImportMapping FunctionImportName="TruncateProcessedRecordsExceptCorrections" FunctionName="RTMGMTModel.Store.TruncateProcessedRecordsExceptCorrections" />
+          <FunctionImportMapping FunctionImportName="UpdateReportsToWithCorrections" FunctionName="RTMGMTModel.Store.UpdateReportsToWithCorrections" />
+          <FunctionImportMapping FunctionImportName="ImportsReportsToRecords" FunctionName="RTMGMTModel.Store.ImportReportsToRecords" />
+          <FunctionImportMapping FunctionImportName="DeleteAllRecordsFunction" FunctionName="RTMGMTModel.Store.DeleteAllRecords" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

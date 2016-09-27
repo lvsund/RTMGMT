@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "ImportRecords";
+}
+
+<h2>ImportRecords</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>
+    Import Reports To Records
+</p>
+
+<form action="" method="post" enctype="multipart/form-data">
+    <table style="margin-top:150px">
+        <tr>
+            <td><label for="file" name="file">FileName:</label></td>
+            <td><input type="file" name="file" id="file" /></td>
+            <td><input type="submit" value="UpLoad" /></td>
+        </tr>
+    </table>
+</form>
+
+@*@using (Html.BeginForm("upload", "", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    { <input type="file" name="FileUpload" />
+        <input type="submit" name="Submit" value="Upload" />
+    }
+
+    <p>@Html.Encode(ViewData["Feedback"]) </p>*@
+
+@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $("#submitBox").click(function () {
+            var fileUpload = document.getElementById("IDofTheUploader");
+            if (fileUpload.value != null) {
+                var uploadFile = new FormData();
+                var files = $("#IDofTheUploader").get(0).files;
+                // Add the uploaded file content to the form data collection
+                if (files.length > 0) {
+                    uploadFile.append("CsvDoc", files[0]);
+                    $.ajax({
+                        url: "/ReportsToRecords/ImportRecords",
+                        contentType: false,
+                        processData: false,
+                        data: uploadFile,
+                        type: 'POST',
+                        success: function () {
+                            alert("Successfully Added & processed");
+                        }
+                    });
+                }
+            }
+        });
+
+        $("#IDofTheUploader").change(function () {
+            var selectedText = $("#IDofTheUploader").val();
+            var extension = selectedText.split('.');
+            if (extension[1] != "csv") {
+                $("#IdofTheTextBoxUpload").focus();
+                alert("Please choose a .csv file");
+                return;
+            }
+            $("#IdofTheTextBoxUpload").val(selectedText);
+
+        });
+    </script>*@

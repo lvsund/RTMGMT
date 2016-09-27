@@ -1,0 +1,57 @@
+﻿@model RTMGMT.Models.ReportsToRecordStaging
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ReportsToRecordStaging</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.REPORTING_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REPORTING_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TITLE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TITLE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REPORTS_TO_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REPORTS_TO_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMPLOYEE_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPLOYEE_ID)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
